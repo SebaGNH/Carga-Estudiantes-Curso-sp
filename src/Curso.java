@@ -1,32 +1,31 @@
+
+import java.util.ArrayList;
+
 public class Curso {
-    Estudiante [] estudiantes;
+    //Estudiante [] estudiantes;
+    ArrayList <Persona> estudiantes;
     
-    Curso(int cantEstudiantes){
-        estudiantes = new Estudiante[cantEstudiantes];
+    public Curso(){
+        estudiantes = new ArrayList();
     }
     
     //Agregar Estudiantes
-    public void agregarEstudiante(Estudiante e){
-        for (int i = 0; i < estudiantes.length; i++) {
-            if(estudiantes[i] == null){
-                estudiantes[i] = e;
-                break;
-            }
-        }
+    public void agregarEstudiante(Persona p){
+        estudiantes.add(p);
     }
     
     
     //Hacer un método que devuelva el PromedioGeneral del Curso.
     public float getPromedioGeneral(){
-        float promedioGeneral = 0f;
+        float acumuladorPromedio = 0f;
         int contador = 0;
-        for (Estudiante estudiante : estudiantes) {
-            if(estudiante != null){
-                promedioGeneral += estudiante.getPromedio();
+        for (Persona estudiante : estudiantes) {
+            if(estudiante instanceof Estudiante){
+                acumuladorPromedio += ((Estudiante) estudiante).getPromedio();
                 contador ++;
             }
         }    
-        return promedioGeneral / contador;
+        return acumuladorPromedio / contador;
     }
     
     

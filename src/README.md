@@ -1,4 +1,4 @@
-#Curso
+## Curso
 
 En un proyecto nuevo haga la clase persona con los siguientes atributos:
 •	Nombre

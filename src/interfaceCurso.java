@@ -20,6 +20,8 @@ public class interfaceCurso extends javax.swing.JFrame {
         limpiarCampos();
     }
     
+    Curso c = new Curso();
+    
     public void limpiarCampos(){
         this.txtNombre.setText("");
         this.txtEdad.setText("");
@@ -38,7 +40,9 @@ public class interfaceCurso extends javax.swing.JFrame {
             bandera = false;
         }       
         
-        JOptionPane.showMessageDialog(null, "Debe completar los campos");
+        if(!bandera){
+            JOptionPane.showMessageDialog(null, "Debe completar los campos");
+        }        
         return bandera;
     }
     
@@ -64,6 +68,8 @@ public class interfaceCurso extends javax.swing.JFrame {
         txtPromedio = new javax.swing.JTextField();
         cboSexo = new javax.swing.JComboBox<>();
         btnAgregarPersona = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        lblPromedio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +93,10 @@ public class interfaceCurso extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("El promedio general es: ");
+
+        lblPromedio.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,20 +105,25 @@ public class interfaceCurso extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(86, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addGap(18, 18, 18)
+                            .addComponent(lblPromedio))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAgregarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,34 +148,38 @@ public class interfaceCurso extends javax.swing.JFrame {
                     .addComponent(txtPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAgregarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblPromedio))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPersonaActionPerformed
-        // BTN Agregar Personas
-        /*
-        Nombre
-•	Edad
-•	Sexo
-        promedio
-        
-        */
-        Curso c;
-        
-        String nombre = this.txtNombre.getText();
-        int edad = Integer.parseInt(this.txtEdad.getText());
-        int sex = this.cboSexo.getSelectedIndex();
-        boolean sexo = true;
-            if(sex == 1){
-                sexo = false;
-            }
-        float promedio = Float.parseFloat(this.txtPromedio.getText());
-        //e = new Estudiante(nombre,edad,sexo,promedio);
-        //c.agregarEstudiante(e);
-        
+        // BTN Agregar Personas    ---------------------------------------------
+        if(validarCampos()){
+            Persona p;
+
+            String nombre = this.txtNombre.getText();
+            int edad = Integer.parseInt(this.txtEdad.getText());
+            int sex = this.cboSexo.getSelectedIndex();
+            boolean sexo = true;
+                if(sex == 1){
+                    sexo = false;
+                }
+            float promedio = Float.parseFloat(this.txtPromedio.getText());
+
+
+            p = new Estudiante(nombre,edad,sexo,promedio);
+            c.agregarEstudiante(p);
+
+            JOptionPane.showMessageDialog(null, p.toString());
+            this.lblPromedio.setText(String.valueOf(c.getPromedioGeneral()));
+            limpiarCampos();
+        }
     }//GEN-LAST:event_btnAgregarPersonaActionPerformed
 
     /**
@@ -206,6 +225,8 @@ public class interfaceCurso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblPromedio;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPromedio;
