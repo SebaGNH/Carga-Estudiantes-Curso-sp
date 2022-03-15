@@ -39,7 +39,7 @@ public abstract class Persona  {
     //toString Persona
     @Override
     public String toString() {
-        return "Persona =" + " nombre: " + nombre + ", edad: " + edad + ", sexo: " + getSexoString();
+        return "Nombre: " + nombre + ", Edad: " + edad + ", Sexo: " + getSexoString();
     }
     
     public String getSexoString(){        

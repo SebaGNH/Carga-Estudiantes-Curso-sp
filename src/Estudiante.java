@@ -21,6 +21,6 @@ public class Estudiante extends Persona{
     //toString Estudiante
     @Override
     public String toString() {
-        return super.toString() + " promedio: " + promedio;
+        return super.toString() + ", Promedio: " + promedio;
     }   
 }

@@ -31,21 +31,12 @@ public class interfaceCurso extends javax.swing.JFrame {
     }
     
     public boolean validarCampos(){
-        boolean bandera = true;
-        if(this.txtNombre.equals("")){
-            bandera = false;
-        }else if(this.txtEdad.equals("")){
-            bandera = false;
-        }else if(this.txtPromedio.equals("")){
-            bandera = false;
-        }       
-        
-        if(!bandera){
-            JOptionPane.showMessageDialog(null, "Debe completar los campos");
-        }        
-        return bandera;
-    }
-    
+        if(this.txtNombre.getText().equals("") || this.txtEdad.getText().equals("") ||  this.txtPromedio.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe completar todos los campos");
+            return false;             
+        }
+        return true;
+    }   
     
     
 
@@ -160,7 +151,7 @@ public class interfaceCurso extends javax.swing.JFrame {
 
     private void btnAgregarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPersonaActionPerformed
         // BTN Agregar Personas    ---------------------------------------------
-        if(validarCampos()){
+        if( validarCampos() ){
             Persona p;
 
             String nombre = this.txtNombre.getText();
@@ -177,6 +168,7 @@ public class interfaceCurso extends javax.swing.JFrame {
             c.agregarEstudiante(p);
 
             JOptionPane.showMessageDialog(null, p.toString());
+            
             this.lblPromedio.setText(String.valueOf(c.getPromedioGeneral()));
             limpiarCampos();
         }
